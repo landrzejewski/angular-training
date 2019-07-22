@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {BookModel} from "../../model/book.model";
+import {BookModel} from '../../model/book.model';
 
 @Component({
   selector: 'app-book-card',
@@ -9,7 +9,7 @@ import {BookModel} from "../../model/book.model";
 export class BookCardComponent {
 
   @Input()
-  book: BookModel;
+  book = new BookModel();
   @Input()
   isSelected = false;
   @Output()
