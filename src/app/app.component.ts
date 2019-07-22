@@ -27,13 +27,6 @@ export class AppComponent {
   editedBook = null;
   titleSize = 18;
 
-  get authorsStyle() {
-    return {
-      color: 'gray',
-      letterSpacing: '2px'
-    };
-  }
-
   select(book) {
     this.selectedBook = book;
     this.editedBook =  {...book}; // Object.assign({}, book);

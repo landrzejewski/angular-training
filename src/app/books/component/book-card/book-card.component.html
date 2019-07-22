@@ -1,0 +1,8 @@
+<div class="card book" (click)="select()" [style.borderBottomColor]="book.category">
+  <img src="http://placehold.it/320x240" alt="Cover">
+  <div class="card-body">
+    <h4 class="card-title truncate" [class.selected]="isSelected">{{book.title}}</h4>
+    <p class="card-text truncate" [ngStyle]="authorsStyle">{{book.authors}}</p>
+  </div>
+  <small class="text-center m-1" *ngIf="book.bestseller">Bestseller</small>
+</div>
