@@ -1,3 +1,37 @@
-<button class="btn btn-dark btn-say-hello" (click)="sayHello()">Say hello</button>
-<div class="hello-message">{{message}}</div>
-<app-date></app-date>
+<div class="container">
+
+  <div class="form-book" *ngIf="editedBook">
+    <div class="text-center" [style.fontSize.px]="titleSize">Book</div>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input id="title" class="form-control" [value]="selectedBook?.title" (input)="editedBook.title = $event.target.value">
+    </div>
+    <div class="form-group">
+      <label for="authors">Authors:</label>
+      <input id="authors" class="form-control" [(ngModel)]="editedBook.authors">
+    </div>
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <input id="category" class="form-control" type="color" [(ngModel)]="editedBook.category">
+    </div>
+    <div class="form-group form-check">
+      <input id="bestseller" type="checkbox" class="form-check-input" [(ngModel)]="editedBook.bestseller">
+      <label class="form-check-label" for="bestseller">Bestseller</label>
+    </div>
+    <button class="btn btn-danger" (click)="reset()">Cancel</button>
+    <button class="btn btn-success" (click)="save()">Save</button>
+  </div>
+
+  <div class="row justify-content-around books">
+    <div class="card book" *ngFor="let book of books" (click)="select(book)" [style.borderBottomColor]="book.category">
+      <img src="http://placehold.it/320x240" alt="Cover">
+      <div class="card-body">
+        <h4 class="card-title truncate" [class.selected]="isSelected(book)">{{book.title}}</h4>
+        <p class="card-text truncate" [ngStyle]="authorsStyle">{{book.authors}}</p>
+      </div>
+      <small class="text-center m-1" *ngIf="book.bestseller">Bestseller</small>
+    </div>
+  </div>
+
+</div>
+
