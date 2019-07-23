@@ -6,5 +6,6 @@ export class BookModel {
   category: string = '#ffb323';
   rating: number;
   bestseller: boolean;
+  genre: string[];
 
 }

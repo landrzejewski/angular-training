@@ -1,11 +1,12 @@
 {
   "books": [
     {
-      "id": 1,
-      "title": "",
+      "category": "#ffb323",
+      "title": "Angular in action",
       "authors": "Jan Kowalski",
-      "rating": 3,
-      "category": "#ffbe3c",
+      "genre": "Drama",
+      "rating": 5,
+      "id": 1,
       "bestseller": true
     }
   ]
