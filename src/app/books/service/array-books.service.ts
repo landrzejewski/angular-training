@@ -1,10 +1,12 @@
 import {Inject, Injectable, Optional} from '@angular/core';
-import {BookModel} from "../model/book.model";
+import {BookModel} from '../model/book.model';
+import {BooksService} from './books.service';
+import {EMPTY, Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArrayBooksService {
+export class ArrayBooksService implements BooksService {
 
   constructor(@Inject('BooksData') @Optional() private readonly books: BookModel[]) {
     if (!books) {
@@ -12,32 +14,38 @@ export class ArrayBooksService {
     }
   }
 
-  getAll(): BookModel[] {
-    return [...this.books];
+  getAll(): Observable<BookModel[]> {
+    return of([...this.books]);
   }
 
-  save(book: BookModel): BookModel {
+  save(book: BookModel): Observable<BookModel> {
     book.id = Date.now();
     this.books.push(book);
-    return book;
+    return of(book);
   }
 
-  update(book: BookModel) {
+  update(book: BookModel): Observable<void> {
     const index = this.findIndex(book.id);
     if (index !== -1) {
       this.books[index] = book;
     }
+    return EMPTY;
   }
 
-  remove(bookId: number) {
+  remove(bookId: number): Observable<void>  {
     const index = this.findIndex(bookId);
     if (index !== -1) {
-      this.books.splice(index);
+      this.books.splice(index, 1);
     }
+    return EMPTY;
   }
 
   private findIndex(bookId: number): number {
     return this.books.findIndex((currentBook) => bookId === currentBook.id);
+  }
+
+  search(property: string, query: string): Observable<BookModel[]> {
+    throw new Error("Not yet implemented")
   }
 
 }

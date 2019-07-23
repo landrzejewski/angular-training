@@ -1,3 +1,7 @@
+<p class="indicator pull-right" *ngIf="isProcessing">
+  <span class="fa fa-cogs"></span>
+</p>
+
 <ul class="nav justify-content-center">
   <li class="nav-item">
     <a class="nav-link" href="#" *ngIf="!selectedBook" (click)="add()">Add</a>
