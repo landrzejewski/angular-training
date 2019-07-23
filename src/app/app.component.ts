@@ -17,6 +17,7 @@ export class AppComponent {
     book.authors = 'Jan Kowalski';
     book.category = '#ffbe3c';
     book.bestseller = true;
+    book.rating = 3;
     this.books.push(book);
   }
 

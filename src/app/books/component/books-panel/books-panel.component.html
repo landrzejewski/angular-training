@@ -12,5 +12,6 @@
 
 <div class="row justify-content-around books">
   <app-book-card *ngFor="let book of books" [book]="book" [isSelected]="isSelected(book)" (selected)="select($event)">
+    <app-rating [rating]="book.rating" book-body></app-rating>
   </app-book-card>
 </div>
