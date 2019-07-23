@@ -2,7 +2,7 @@
   "books": [
     {
       "id": 1,
-      "title": "Angular w praktyce",
+      "title": "",
       "authors": "Jan Kowalski",
       "rating": 3,
       "category": "#ffbe3c",

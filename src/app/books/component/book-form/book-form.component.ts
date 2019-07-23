@@ -16,4 +16,9 @@ export class BookFormComponent {
   @Output()
   canceled = new EventEmitter();
 
+  saveBook(bookForm) {
+    if (bookForm.valid) {
+      this.saved.emit(this.book);
+    }
+  }
 }

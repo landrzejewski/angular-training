@@ -1,21 +1,22 @@
-<div class="book-form" *ngIf="book">
+<form #bookForm="ngForm" class="book-form" *ngIf="book" novalidate="true" (ngSubmit)="saveBook(bookForm)">
   <div class="text-center" [style.fontSize.px]="titleSize">Book</div>
   <div class="form-group">
     <label for="title">Title:</label>
-    <input id="title" class="form-control" [(ngModel)]="book.title">
+    <input #titleInput=ngModel id="title" class="form-control" name="title" [(ngModel)]="book.title" required minlength="3">
+    <app-errors [input]="titleInput"></app-errors>
   </div>
   <div class="form-group">
     <label for="authors">Authors:</label>
-    <input id="authors" class="form-control" [(ngModel)]="book.authors">
+    <input id="authors" class="form-control" name="authors" [(ngModel)]="book.authors">
   </div>
   <div class="form-group">
     <label for="category">Category:</label>
-    <input id="category" class="form-control" type="color" [(ngModel)]="book.category">
+    <input id="category" class="form-control" type="color" name="category" [(ngModel)]="book.category">
   </div>
   <div class="form-group form-check">
-    <input id="bestseller" type="checkbox" class="form-check-input" [(ngModel)]="book.bestseller">
+    <input id="bestseller" type="checkbox" class="form-check-input" name="bestseller" [(ngModel)]="book.bestseller">
     <label class="form-check-label" for="bestseller">Bestseller</label>
   </div>
   <button class="btn btn-danger" (click)="canceled.emit()">Cancel</button>
-  <button class="btn btn-success" (click)="saved.emit(book)">Save</button>
-</div>
+  <button class="btn btn-success" type="submit" [disabled]="bookForm.invalid">Save</button>
+</form>
