@@ -11,6 +11,8 @@
   </li>
 </ul>
 
+<app-books-search *ngIf="!editedBook" (search)="refreshBooks($event)"></app-books-search>
+
 <app-book-form *ngIf="editedBook" [book]="editedBook" (canceled)="reset()" (saved)="save($event)">
 </app-book-form>
 

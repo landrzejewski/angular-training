@@ -56,7 +56,7 @@ export class BooksPanelComponent {
     this.isProcessing = true;
     observable.subscribe(
       () => {},
-      ()=> (exception) => {console.log(exception); this.isProcessing = false;},
+      ()=> (exception) => this.onException(exception),
       () => this.refresh()
     );
   }
@@ -72,9 +72,14 @@ export class BooksPanelComponent {
     this.isProcessing = true;
     this.subscription = observable.subscribe(
       (books) => this.books = books,
-      (exception) => {console.log(exception); this.isProcessing = false;},
+      (exception) => this.onException(exception),
       () => this.isProcessing = false
     );
+  }
+
+  private onException(exception) {
+    console.log(exception);
+    this.isProcessing = false;
   }
 
 }

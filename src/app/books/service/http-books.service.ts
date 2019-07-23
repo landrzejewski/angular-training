@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {BooksService} from './books.service';
 import {Observable} from 'rxjs';
 import {BookModel} from '../model/book.model';
-import {HttpClient} from "@angular/common/http";
-import {Api} from "../../api";
+import {HttpClient} from '@angular/common/http';
+import {Api} from '../../api';
 
 @Injectable()
 export class HttpBooksService implements BooksService {
