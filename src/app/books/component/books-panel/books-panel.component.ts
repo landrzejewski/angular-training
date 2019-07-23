@@ -38,7 +38,7 @@ export class BooksPanelComponent {
 
   remove() {
     const index = this.findIndex(this.editedBook);
-    if (index != -1) {
+    if (index !== -1) {
       this.books.splice(index, 1);
     }
     this.reset();
