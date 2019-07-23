@@ -1,0 +1,5 @@
+<div class="error" *ngIf="input.touched || input.dirty || input.submitted">
+  <p *ngIf="input.errors?.required">This field is required</p>
+  <p *ngIf="input.errors?.minlength">This field is too short</p>
+  <p *ngIf="input.errors?.emial">Invalid email {{input.erros?.email.hint}}</p>
+</div>
