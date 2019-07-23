@@ -5,7 +5,7 @@ import {BookFormComponent} from './component/book-form/book-form.component';
 import {FormsModule} from '@angular/forms';
 import {BooksPanelComponent} from './component/books-panel/books-panel.component';
 import {SharedModule} from '../shared/shared.module';
-
+import booksData from '../books/model/books.data';
 
 @NgModule({
   declarations: [
@@ -15,6 +15,13 @@ import {SharedModule} from '../shared/shared.module';
   ],
   exports: [
     BooksPanelComponent
+  ],
+  providers: [
+    // ArrayBooksService
+    {
+      provide: 'BooksData',
+      useValue: booksData
+    }
   ],
   imports: [
     CommonModule,
