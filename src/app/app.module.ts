@@ -3,7 +3,8 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {BooksModule} from "./books/books.module";
+import {BooksModule} from './books/books.module';
+import {Api} from './api';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import {BooksModule} from "./books/books.module";
     AppRoutingModule,
     BooksModule
   ],
-  providers: [],
+  providers: [
+    Api
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

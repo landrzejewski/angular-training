@@ -6,6 +6,8 @@ import {FormsModule} from '@angular/forms';
 import {BooksPanelComponent} from './component/books-panel/books-panel.component';
 import {SharedModule} from '../shared/shared.module';
 import booksData from '../books/model/books.data';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpBooksService} from "./service/http-books.service";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,10 @@ import booksData from '../books/model/books.data';
     BooksPanelComponent
   ],
   providers: [
-    // ArrayBooksService
+    {
+      provide: 'BooksService',
+      useClass: HttpBooksService
+    },
     {
       provide: 'BooksData',
       useValue: booksData
@@ -26,6 +31,7 @@ import booksData from '../books/model/books.data';
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     SharedModule
   ]
 })

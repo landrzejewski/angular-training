@@ -3,9 +3,7 @@ import {BookModel} from '../model/book.model';
 import {BooksService} from './books.service';
 import {EMPTY, Observable, of} from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ArrayBooksService implements BooksService {
 
   constructor(@Inject('BooksData') @Optional() private readonly books: BookModel[]) {

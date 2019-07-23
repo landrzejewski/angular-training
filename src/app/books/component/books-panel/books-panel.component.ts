@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {BookModel} from '../../model/book.model';
-import {ArrayBooksService} from "../../service/array-books.service";
 import {Observable, Subscription} from "rxjs";
+import {BooksService} from '../../service/books.service';
 
 @Component({
   selector: 'app-books-panel',
@@ -16,7 +16,7 @@ export class BooksPanelComponent {
   isProcessing = false;
   subscription: Subscription;
 
-  constructor(private booksService: ArrayBooksService) {
+  constructor(@Inject('BooksService') private booksService: BooksService) {
     this.refresh();
   }
 
@@ -62,7 +62,6 @@ export class BooksPanelComponent {
   }
 
   private refresh() {
-    this.isProcessing = true;
     this.refreshBooks(this.booksService.getAll());
   }
 
@@ -70,6 +69,7 @@ export class BooksPanelComponent {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    this.isProcessing = true;
     this.subscription = observable.subscribe(
       (books) => this.books = books,
       (exception) => {console.log(exception); this.isProcessing = false;},
