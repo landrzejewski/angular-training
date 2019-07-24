@@ -5,8 +5,8 @@ import {environment} from "../environments/environment";
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "books/panel",
+    path: '',
+    redirectTo: 'books/panel',
     pathMatch: 'full'
   }
 ];
