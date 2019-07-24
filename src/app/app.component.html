@@ -12,6 +12,12 @@
         <a class="nav-link" routerLink="books/list" routerLinkActive="active-menu">Books list</a>
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <select class="form-control" (change)="setLanguage($event.target.value)">
+        <option value="en">En</option>
+        <option value="pl">Pl</option>
+      </select>
+    </form>
   </div>
 </nav>
 
