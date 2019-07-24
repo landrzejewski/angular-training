@@ -4,10 +4,10 @@
 
 <ul class="nav justify-content-center">
   <li class="nav-item">
-    <a class="nav-link" href="#" *ngIf="!selectedBook" (click)="add()">Add</a>
+    <a class="nav-link" href="#" *ngIf="!selectedBook" (click)="add($event)">Add</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" *ngIf="selectedBook" (click)="remove()">Remove</a>
+    <a class="nav-link" href="#" *ngIf="selectedBook" (click)="remove($event)">Remove</a>
   </li>
 </ul>
 
