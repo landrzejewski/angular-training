@@ -34,7 +34,7 @@ export class BooksSearchComponent {
       .pipe(map((results) => results[0].concat(results[1])))
       .pipe(flatMap((books) => books))
       .pipe(distinct((book) => book.id))
-      .pipe(toArray())
+      .pipe(toArray());
     this.search.emit(results);
   }
 
