@@ -2,6 +2,6 @@
 
 <ul>
   <li *ngFor="let book of books | async">
-    <a>{{book.title}} ({{book.authors}})</a>
+    <a [routerLink]="['/books/list', book.id]">{{book.title}} ({{book.authors}})</a>
   </li>
 </ul>
