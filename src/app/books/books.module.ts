@@ -11,6 +11,7 @@ import {HttpBooksService} from "./service/http-books.service";
 import { BooksSearchComponent } from './component/books-search/books-search.component';
 import {BooksRoutingModule} from "./books-routing.module";
 import { BooksListComponent } from './component/books-list/books-list.component';
+import {BookResolver} from "./resolver/book.resolver";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { BooksListComponent } from './component/books-list/books-list.component'
     BooksPanelComponent
   ],
   providers: [
+    BookResolver,
     {
       provide: 'BooksService',
       useClass: HttpBooksService

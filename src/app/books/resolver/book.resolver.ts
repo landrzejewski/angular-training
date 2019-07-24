@@ -10,7 +10,8 @@ export class BookResolver implements Resolve<BookModel> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<BookModel> {
-    return undefined;
+    const bookId = route.paramMap.get('id');
+    return this.booksService.getById(+bookId);
   }
 
 }

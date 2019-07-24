@@ -13,8 +13,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    useHash: true,
-    enableTracing: environment.enableTracing
+   // useHash: true,
+   // enableTracing: environment.enableTracing
   })],
   exports: [RouterModule]
 })

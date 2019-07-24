@@ -12,7 +12,7 @@ export class HttpBooksService implements BooksService {
   }
 
   getById(bookId: number): Observable<BookModel> {
-    return this.httpClient.get<BookModel>(`${this.api.books}/${bookId}`);;
+    return this.httpClient.get<BookModel>(`${this.api.books}/${bookId}`);
   }
 
   getAll(): Observable<BookModel[]> {
