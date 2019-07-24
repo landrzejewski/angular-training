@@ -1,28 +1,28 @@
 <form #bookForm="ngForm" class="book-form" *ngIf="book" novalidate="true" (ngSubmit)="saveBook(bookForm)">
   <div class="text-center" [style.fontSize.px]="titleSize">Book</div>
   <div class="form-group">
-    <label for="title">Title:</label>
+    <label for="title">{{ 'books.book-form.title' | translate }}:</label>
     <input #titleInput=ngModel id="title" class="form-control" name="title" [(ngModel)]="book.title" required
            minlength="3" [disabled]="!isEditable">
     <app-errors [input]="titleInput"></app-errors>
   </div>
   <div class="form-group">
-    <label for="authors">Authors:</label>
+    <label for="authors">{{ 'books.book-form.authors' | translate }}:</label>
     <input id="authors" class="form-control" name="authors" [(ngModel)]="book.authors" [disabled]="!isEditable">
   </div>
   <div class="form-group">
-    <label for="category">Category:</label>
+    <label for="category">{{ 'books.book-form.category' | translate }}:</label>
     <input id="category" class="form-control" type="color" name="category" [(ngModel)]="book.category"
            [disabled]="!isEditable">
   </div>
   <div class="form-group">
-    <label>Genre:</label>
+    <label>{{ 'books.book-form.genre' | translate }}:</label>
     <select name="genre" class="form-control" [(ngModel)]="book.genre" [disabled]="!isEditable">
       <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
     </select>
   </div>
   <div class="form-group">
-    <label>Rating:</label>
+    <label>{{ 'books.book-form.rating' | translate }}:</label>
     <div class="form-check form-check-inline" *ngFor="let value of ratings">
       <input id="rating{{value}}" name="rating" class="form-check-input rating" type="radio" [value]="value"
              [(ngModel)]="book.rating" [attr.disabled]="isEditable ? null : false">
@@ -32,10 +32,10 @@
   <div class="form-group form-check">
     <input id="bestseller" type="checkbox" class="form-check-input" name="bestseller" [(ngModel)]="book.bestseller"
            [disabled]="!isEditable">
-    <label class="form-check-label" for="bestseller">Bestseller</label>
+    <label class="form-check-label" for="bestseller">{{ 'books.book-form.bestseller' | translate }}</label>
   </div>
   <div *ngIf="isEditable">
-    <button class="btn btn-danger" (click)="canceled.emit()">Cancel</button>
-    <button class="btn btn-success" type="submit" [disabled]="bookForm.invalid">Save</button>
+    <button class="btn btn-danger" (click)="canceled.emit()">{{ 'books.book-form.cancel' | translate }}</button>
+    <button class="btn btn-success" type="submit" [disabled]="bookForm.invalid">{{ 'books.book-form.save' | translate }}</button>
   </div>
 </form>

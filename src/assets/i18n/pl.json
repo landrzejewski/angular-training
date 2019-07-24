@@ -2,5 +2,9 @@
   "books.book-form.title": "Tytuł",
   "books.book-form.authors": "Autorzy",
   "books.book-form.rating": "Ocena",
-  "books.book-form.bestseller": "Bestseller"
+  "books.book-form.category": "Kategoria",
+  "books.book-form.genre": "Typ",
+  "books.book-form.bestseller": "Bestseller",
+  "books.book-form.cancel": "Anuluj",
+  "books.book-form.save": "Zapisz"
 }

@@ -2,5 +2,9 @@
   "books.book-form.title": "Title",
   "books.book-form.authors": "Authors",
   "books.book-form.rating": "Rating",
-  "books.book-form.bestseller": "Bestseller"
+  "books.book-form.category": "Category",
+  "books.book-form.genre": "Genre",
+  "books.book-form.bestseller": "Bestseller",
+  "books.book-form.cancel": "Cancel",
+  "books.book-form.save": "Save"
 }
