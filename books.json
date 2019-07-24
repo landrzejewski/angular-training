@@ -14,7 +14,7 @@
       "title": "React in action",
       "authors": "Marek Nowak",
       "rating": 4,
-      "bestseller": true,
+      "bestseller": false,
       "id": 2
     }
   ]
