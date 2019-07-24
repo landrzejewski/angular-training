@@ -29,7 +29,8 @@ export class BooksPanelComponent {
     return book === this.selectedBook;
   }
 
-  add() {
+  add($event) {
+    $event.preventDefault();
     this.editedBook = new BookModel();
   }
 
@@ -42,7 +43,8 @@ export class BooksPanelComponent {
     this.reset();
   }
 
-  remove() {
+  remove($event) {
+    $event.preventDefault();
     this.processAsync(this.booksService.remove(this.editedBook.id));
     this.reset();
   }
