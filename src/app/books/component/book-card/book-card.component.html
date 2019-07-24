@@ -3,7 +3,7 @@
   <ng-content select="[book-header]"></ng-content>
   <div class="card-body">
     <h4 class="card-title truncate" [class.selected]="isSelected">{{book.title}}</h4>
-    <p class="card-text truncate" [ngStyle]="authorsStyle">{{book.authors}}</p>
+    <p class="card-text truncate" [ngStyle]="authorsStyle" appHighlight color="blue">{{book.authors}}</p>
     <ng-content select="[book-body]"></ng-content>
   </div>
   <ng-content select="[book-footer]"></ng-content>

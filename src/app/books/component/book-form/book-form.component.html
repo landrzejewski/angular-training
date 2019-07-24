@@ -1,5 +1,5 @@
 <form #bookForm="ngForm" class="book-form" *ngIf="book" novalidate="true" (ngSubmit)="saveBook(bookForm)">
-  <div class="text-center" [style.fontSize.px]="titleSize">Book</div>
+  <div class="text-center" [style.fontSize.px]="titleSize">{{ 'book' | appCapitalize:1 }}</div>
   <div class="form-group">
     <label for="title">{{ 'books.book-form.title' | translate }}:</label>
     <input #titleInput=ngModel id="title" class="form-control" name="title" [(ngModel)]="book.title" required
