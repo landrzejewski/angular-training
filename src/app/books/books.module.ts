@@ -47,7 +47,7 @@ export class BooksModule {
 }
 
 /*
-function booksServiceFactory(booksData: Book[]) {
+function booksServiceFactory(booksData: BookModel[]) {
   return new ArrayBooksService(booksData);
 }
 */
