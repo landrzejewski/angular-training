@@ -8,6 +8,14 @@
       "rating": 5,
       "id": 1,
       "bestseller": true
+    },
+    {
+      "category": "#b254ff",
+      "title": "React in action",
+      "authors": "Marek Nowak",
+      "rating": 4,
+      "bestseller": true,
+      "id": 2
     }
   ]
 }

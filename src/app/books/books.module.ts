@@ -9,13 +9,16 @@ import booksData from '../books/model/books.data';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpBooksService} from "./service/http-books.service";
 import { BooksSearchComponent } from './component/books-search/books-search.component';
+import {BooksRoutingModule} from "./books-routing.module";
+import { BooksListComponent } from './component/books-list/books-list.component';
 
 @NgModule({
   declarations: [
     BookCardComponent,
     BookFormComponent,
     BooksPanelComponent,
-    BooksSearchComponent
+    BooksSearchComponent,
+    BooksListComponent
   ],
   exports: [
     BooksPanelComponent
@@ -40,7 +43,8 @@ import { BooksSearchComponent } from './component/books-search/books-search.comp
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    BooksRoutingModule
   ]
 })
 export class BooksModule {
