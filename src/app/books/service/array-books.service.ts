@@ -46,4 +46,8 @@ export class ArrayBooksService implements BooksService {
     throw new Error("Not yet implemented")
   }
 
+  getById(bookId: number): Observable<BookModel> {
+    throw new Error("Not yet implemented")
+  }
+
 }
