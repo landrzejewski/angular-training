@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {BooksModule} from './books/books.module';
 import {Api} from './api';
 
 @NgModule({
@@ -12,8 +11,7 @@ import {Api} from './api';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BooksModule
+    AppRoutingModule
   ],
   providers: [
     Api

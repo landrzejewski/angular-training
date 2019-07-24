@@ -8,11 +8,11 @@ import {BookResolver} from "./resolver/book.resolver";
 
 const routes: Routes = [
   {
-    path: 'books/panel',
+    path: 'panel',
     component: BooksPanelComponent
   },
   {
-    path: 'books/list',
+    path: 'list',
     component: BooksListComponent,
     children:[
       {
