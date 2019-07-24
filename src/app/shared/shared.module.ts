@@ -6,6 +6,7 @@ import {ErrorsComponent} from './component/errors/errors.component';
 import {HighlightDirective} from './directive/highlight.directive';
 import {RepeatDirective} from './directive/repeatDirective';
 import {CapitalizePipe} from './pipe/capitalize.pipe';
+import {SafeHtmlPipe} from './pipe/SafeHtmlPipe';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {CapitalizePipe} from './pipe/capitalize.pipe';
     ErrorsComponent,
     HighlightDirective,
     RepeatDirective,
-    CapitalizePipe
+    CapitalizePipe,
+    SafeHtmlPipe
   ],
   exports: [
     RatingComponent,
@@ -23,7 +25,8 @@ import {CapitalizePipe} from './pipe/capitalize.pipe';
     ErrorsComponent,
     HighlightDirective,
     RepeatDirective,
-    CapitalizePipe
+    CapitalizePipe,
+    SafeHtmlPipe
   ],
   imports: [
     CommonModule
