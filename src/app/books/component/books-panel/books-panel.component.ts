@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {BookModel} from '../../model/book.model';
-import {Observable, Subscription} from "rxjs";
+import {EMPTY, Observable, Subscription} from "rxjs";
 import {BooksService} from '../../service/books.service';
 
 @Component({
@@ -10,7 +10,7 @@ import {BooksService} from '../../service/books.service';
 })
 export class BooksPanelComponent {
 
-  books: BookModel[] = [];
+  books: Observable<BookModel[]> = EMPTY;
   selectedBook = null;
   editedBook = null;
   isProcessing = false;
@@ -70,11 +70,7 @@ export class BooksPanelComponent {
       this.subscription.unsubscribe();
     }
     this.isProcessing = true;
-    this.subscription = observable.subscribe(
-      (books) => this.books = books,
-      (exception) => this.onException(exception),
-      () => this.isProcessing = false
-    );
+    this.books = observable;
   }
 
   private onException(exception) {
