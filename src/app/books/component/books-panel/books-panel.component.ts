@@ -65,7 +65,7 @@ export class BooksPanelComponent {
     this.refreshBooks(this.booksService.getAll());
   }
 
-  private refreshBooks(observable: Observable<BookModel[]>) {
+  refreshBooks(observable: Observable<BookModel[]>) {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }

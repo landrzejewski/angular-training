@@ -1,7 +1,14 @@
 <h4>Books</h4>
 
-<ul>
-  <li *ngFor="let book of books | async">
-    <a [routerLink]="['/books/list', book.id]">{{book.title}} ({{book.authors}})</a>
-  </li>
-</ul>
+<div class="row">
+  <div class="col-6">
+    <ul>
+      <li *ngFor="let book of books | async">
+        <a [routerLink]="['/books/list', book.id]">{{book.title}} ({{book.authors}})</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-6">
+    <router-outlet></router-outlet>
+  </div>
+</div>

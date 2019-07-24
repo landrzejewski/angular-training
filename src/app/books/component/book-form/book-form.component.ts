@@ -1,13 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BookModel} from '../../model/book.model';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-book-form',
   templateUrl: './book-form.component.html',
   styleUrls: ['./book-form.component.scss']
 })
-export class BookFormComponent implements OnInit {
+export class BookFormComponent {
 
   @Input()
   book = new BookModel();
@@ -17,17 +17,16 @@ export class BookFormComponent implements OnInit {
   @Output()
   canceled = new EventEmitter();
   genres = ['Horror', 'Adventure', 'Drama', 'Romans'];
-  ratings = [1, 2, 3, 4 ,5];
+  ratings = [1, 2, 3, 4, 5];
   isEditable = true;
 
-  constructor(private route: ActivatedRoute) {
-  }
-
-  ngOnInit() {
-    if (this.route.snapshot.data.book) {
-      this.book = this.route.snapshot.data.book;
-      this.isEditable = false;
-    }
+  constructor(private route: ActivatedRoute, private router: Router) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && this.route.snapshot.data.book) {
+        this.book = this.route.snapshot.data.book;
+        this.isEditable = false;
+      }
+    });
   }
 
   saveBook(bookForm) {
