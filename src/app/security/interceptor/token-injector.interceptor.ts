@@ -13,14 +13,14 @@ export class TokenInjectorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (!this.securityService) {
-      this.securityService = this.injector.get(SecurityService);
+      this.securityService = this.injector.get(SecurityService)
     }
     const token = this.securityService.getToken();
     if (token) {
       const decoratedRequest = request.clone({
         headers: request.headers.set('Authorization', `bearer ${token}`)
       });
-      next.handle(decoratedRequest);
+      return next.handle(decoratedRequest);
     }
     return next.handle(request);
   }

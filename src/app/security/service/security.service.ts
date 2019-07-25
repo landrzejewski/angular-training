@@ -93,6 +93,7 @@ export class SecurityService {
     const authentication = new AuthenticationModel();
     authentication.token = json['access_token'];
     authentication.refreshToken = json['refresh_token'];
+    authentication.roles = ['user'];
     return authentication;
   }
 
