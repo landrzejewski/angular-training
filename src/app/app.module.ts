@@ -4,10 +4,14 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {Api} from './api';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {SharedModule} from './shared/shared.module';
+import {TokenInjectorInterceptor} from './security/interceptor/token-injector.interceptor';
+import {InvalidSecurityContextInterceptor} from './security/interceptor/invalid-security-context.interceptor';
+import {UserRoleGuard} from './security/guard/user-role.guard';
+import {SecurityModule} from './security/security.module';
 
 @NgModule({
   declarations: [
@@ -24,10 +28,21 @@ import {SharedModule} from './shared/shared.module';
         deps: [HttpClient]
       }
     }),
-    SharedModule
+    SharedModule,
+    SecurityModule
   ],
   providers: [
-    Api
+    Api,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInjectorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InvalidSecurityContextInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

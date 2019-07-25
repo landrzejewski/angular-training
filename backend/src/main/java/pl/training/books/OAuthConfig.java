@@ -40,7 +40,7 @@ public class OAuthConfig {
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
             clients.inMemory()
                     .withClient("books")
-                    .authorizedGrantTypes("password")
+                    .authorizedGrantTypes("password", "refresh_token")
                     .scopes("public");
 
         }

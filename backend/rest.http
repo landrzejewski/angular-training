@@ -18,6 +18,6 @@ username=admin&password=admin&client_id=books&grant_type=password
 
 GET http://localhost:8080/api/v1/users/active
 Accept: application/json
-Authorization: bearer 298ec42b-61cb-4c1a-8ba2-da0fc1246a0d
+Authorization: bearer 2617a9fb-4c17-419f-936c-94dc81cf84f3
 
 ###

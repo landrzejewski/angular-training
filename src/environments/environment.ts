@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   enableTracing: true,
-  baseUrl: 'http://localhost:3000'
+  baseUrl: 'http://localhost:3000',
+  securityBaseUrl: 'http://localhost:8080'
 };
 
 /*
