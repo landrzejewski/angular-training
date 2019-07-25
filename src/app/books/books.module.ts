@@ -13,6 +13,8 @@ import {BooksRoutingModule} from "./books-routing.module";
 import { BooksListComponent } from './component/books-list/books-list.component';
 import {BookResolver} from "./resolver/book.resolver";
 import {TranslateModule} from "@ngx-translate/core";
+import {SecurityService} from '../security/service/security.service';
+import {SecurityModule} from '../security/security.module';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import {TranslateModule} from "@ngx-translate/core";
     ReactiveFormsModule,
     SharedModule,
     BooksRoutingModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    SecurityModule
   ]
 })
 export class BooksModule {

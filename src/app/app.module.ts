@@ -10,8 +10,8 @@ import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate
 import {SharedModule} from './shared/shared.module';
 import {TokenInjectorInterceptor} from './security/interceptor/token-injector.interceptor';
 import {InvalidSecurityContextInterceptor} from './security/interceptor/invalid-security-context.interceptor';
-import {UserRoleGuard} from './security/guard/user-role.guard';
 import {SecurityModule} from './security/security.module';
+import {BooksModule} from './books/books.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ import {SecurityModule} from './security/security.module';
         deps: [HttpClient]
       }
     }),
+    BooksModule,
     SharedModule,
     SecurityModule
   ],

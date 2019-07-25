@@ -6,7 +6,6 @@ import {BookFormComponent} from './component/book-form/book-form.component';
 import {BookResolver} from "./resolver/book.resolver";
 import {UserRoleGuard} from '../security/guard/user-role.guard';
 
-
 const routes: Routes = [
   {
     path: 'panel',

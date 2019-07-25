@@ -64,7 +64,7 @@ export class SecurityService {
   login(username: string, password: string): Observable<AccountModel> {
     const payload = this.preparePayload(username, password);
     const authenticationChanges = this.retrieveToken(payload).pipe(shareReplay(1));
-    const accountChanges = authenticationChanges.pipe(mergeMap(this.retrieveAccount)).pipe(shareReplay(1));
+    const accountChanges = authenticationChanges.pipe(mergeMap(() => this.retrieveAccount())).pipe(shareReplay(1));
     authenticationChanges.subscribe(
       (authentication) => this.authentication = authentication,
       (error) => console.log('Login failed', error));
@@ -87,7 +87,6 @@ export class SecurityService {
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
     return this.httpClient.post(this.api.oauth, payload, {headers})
       .pipe(map(this.toAuthentication));
-
   }
 
   private toAuthentication(json) {

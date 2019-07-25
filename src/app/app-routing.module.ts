@@ -5,8 +5,10 @@ import {environment} from "../environments/environment";
 
 const routes: Routes = [
   {
-    path: 'books',
-    loadChildren: './books/books.module#BooksModule'
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'list'
+   // loadChildren: './books/books.module#BooksModule'
   }
 ];
 
