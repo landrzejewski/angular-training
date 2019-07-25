@@ -7,10 +7,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="panel" routerLinkActive="active-menu">Books panel</a>
+        <a class="nav-link" routerLink="books/panel" routerLinkActive="active-menu">Books panel</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" routerLink="list" routerLinkActive="active-menu">Books list</a>
+        <a class="nav-link" routerLink="books/list" routerLinkActive="active-menu">Books list</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -20,6 +20,11 @@
       </select>
     </form>
   </div>
+  <ul class="navbar-nav mr-auto" *ngIf="authentication.username">
+    <li class="nav-item active">
+      <a class="nav-link" (click)="logout()">Logout {{authentication.username}}</a>
+    </li>
+  </ul>
 </nav>
 
 <div class="container">

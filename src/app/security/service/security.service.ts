@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Api} from '../../api';
 import {Router} from '@angular/router';
 import {CryptoService} from '../../shared/service/crypto.service';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, interval, Observable, Subscription} from 'rxjs';
 import {AuthenticationModel} from '../model/authentication.model';
 import {map, mergeMap, shareReplay} from 'rxjs/operators';
 import uuid from 'uuid/v4';
@@ -15,6 +15,7 @@ export class SecurityService {
   private readonly authenticationKey = 'client_id';
   private readonly saltKey = 'app_id';
   private readonly clientId = 'books';
+  private refreshTokenSubscription: Subscription;
 
   authenticationChanges: Observable<AuthenticationModel>;
 
@@ -33,6 +34,7 @@ export class SecurityService {
       const decryptedData = this.cryptoService.get(this.shuffleSalt(salt), authentication);
       this.authentication = JSON.parse(decryptedData);
       this.authenticationSubject.next(this.getPublicAuthentication());
+      this.startRefreshingToken();
     } else {
       this.createSalt();
     }
@@ -62,19 +64,19 @@ export class SecurityService {
   }
 
   login(username: string, password: string): Observable<AccountModel> {
-    const payload = this.preparePayload(username, password);
+    const payload = this.prepareLoginPayload(username, password);
     const authenticationChanges = this.retrieveToken(payload).pipe(shareReplay(1));
     const accountChanges = authenticationChanges.pipe(mergeMap(() => this.retrieveAccount())).pipe(shareReplay(1));
     authenticationChanges.subscribe(
       (authentication) => this.authentication = authentication,
       (error) => console.log('Login failed', error));
     accountChanges.subscribe(
-      (account) => this.updateSecurityContext(account),
+      (account) => {this.updateSecurityContext(account);  this.startRefreshingToken();},
       (error) => console.log('Account loading failed', error));
     return accountChanges;
   }
 
-  private preparePayload(username: string, password: string): string {
+  private prepareLoginPayload(username: string, password: string): string {
     const payload = new URLSearchParams();
     payload.set('username', username);
     payload.set('password', password);
@@ -93,7 +95,6 @@ export class SecurityService {
     const authentication = new AuthenticationModel();
     authentication.token = json['access_token'];
     authentication.refreshToken = json['refresh_token'];
-    authentication.roles = ['user'];
     return authentication;
   }
 
@@ -101,9 +102,9 @@ export class SecurityService {
     return this.httpClient.get<AccountModel>(this.api.activeAccount);
   }
 
-  private updateSecurityContext(account: AccountModel) {
+  private updateSecurityContext(account: AccountModel = new AccountModel()) {
     const salt = this.loadSalt();
-    this.authentication.username = account.login;
+    this.authentication.username = account.login || this.authentication.username;
     this.authentication.roles = account.roles || ['user'];
     this.authenticationSubject.next(this.getPublicAuthentication());
     const encryptedData = this.cryptoService.set(this.shuffleSalt(salt), JSON.stringify(this.authentication));
@@ -115,14 +116,44 @@ export class SecurityService {
   }
 
   logout() {
+    if (this.refreshTokenSubscription) {
+      this.refreshTokenSubscription.unsubscribe();
+      this.refreshTokenSubscription = null;
+    }
     sessionStorage.removeItem(this.authenticationKey);
     this.createSalt();
     this.authentication = new AuthenticationModel();
     this.authenticationSubject.next(this.authentication);
+    this.router.navigateByUrl("login");
   }
 
   getToken() {
     return this.authentication.token;
+  }
+
+  private startRefreshingToken() {
+    if (!this.refreshTokenSubscription) {
+      this.refreshTokenSubscription = interval(1 * 60 * 1000)
+        .subscribe(() => this.refreshToken());
+    }
+  }
+
+  private refreshToken() {
+    const payload = this.prepareRefreshTokenPayload();
+    this.retrieveToken(payload)
+      .subscribe((authentication) => {
+        this.authentication.token = authentication.token;
+        this.authentication.refreshToken = authentication.refreshToken;
+        this.updateSecurityContext();
+      });
+  }
+
+  private prepareRefreshTokenPayload(): string {
+    const payload = new URLSearchParams();
+    payload.set('refresh_token', this.authentication.refreshToken);
+    payload.set('grant_type', 'refresh_token');
+    payload.set('client_id', this.clientId);
+    return payload.toString();
   }
 
 }

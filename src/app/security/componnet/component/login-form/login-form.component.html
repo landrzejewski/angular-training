@@ -8,7 +8,7 @@
     <input id="password" type="password" class="form-control" [(ngModel)]="credentials.password" name="password">
   </div>
   <button type="submit" class="btn btn-primary">Login</button>
-  <div *ngIf="loginError" class="error">
+  <div *ngIf="loginError" class="error login-error">
     Invalid username or password
   </div>
 </form>
