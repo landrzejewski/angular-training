@@ -17,7 +17,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <hibernate.validator>6.0.16.Final</hibernate.validator>
+        <hibernate.validator>6.0.20.Final</hibernate.validator>
         <swagger.version>2.9.2</swagger.version>
         <mapstruct.version>1.2.0.Final</mapstruct.version>
     </properties>
